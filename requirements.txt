@@ -1,0 +1,7 @@
+django==3.2
+django_split_settings==1.2.0
+Faker==17.6.0
+flake8==4.0
+more_itertools==9.1.0
+psycopg2-binary==2.9
+python-dotenv==1.0.0
