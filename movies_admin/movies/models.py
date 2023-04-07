@@ -25,7 +25,7 @@ class Genre(UUIDMixin, TimeStampedMixin):
         return self.name
 
     name = models.CharField(_('name'), max_length=255)
-    description = models.TextField(_('description'), blank=True)
+    description = models.TextField(_('description'), null=True, blank=True)
 
     class Meta:
 
@@ -39,7 +39,12 @@ class Person(UUIDMixin, TimeStampedMixin):
     def __str__(self):
         return self.full_name
     
+    class Gender(models.TextChoices):
+        MALE = 'male', _('male')
+        FEMALE = 'female', _('female')
+
     full_name = models.TextField(_('full_name'))
+    gender = models.TextField(_('gender'), choices=Gender.choices, null=True)
 
     class Meta:
 
@@ -73,7 +78,7 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     )
     genres = models.ManyToManyField(Genre, verbose_name=_('genres'), through='GenreFilmwork')
     roles = models.ManyToManyField(Person, verbose_name=_('roles'), through='PersonFilmwork')
-    certificate = models.CharField(_('certificate'), max_length=512, blank=True)
+    certificate = models.CharField(_('certificate'), max_length=512, null=True, blank=True)
     file_path = models.FileField(_('file'), blank=True, null=True, upload_to='movies/')
 
     class Meta:
@@ -98,9 +103,14 @@ class GenreFilmwork(UUIDMixin):
 
 class PersonFilmwork(UUIDMixin):
 
+    class RoleType(models.TextChoices):
+        ACTOR = 'actor', _('actor')
+        DIRECTOR = 'director', _('director')
+        WRITER = 'writer', _('writer')
+
     film_work = models.ForeignKey('Filmwork', verbose_name=_('film_work'), on_delete=models.CASCADE)
     person = models.ForeignKey('Person', verbose_name=_('person'), on_delete=models.CASCADE)
-    role = models.TextField(_('role'), null=True)
+    role = models.CharField(_('role'), max_length=8, choices=RoleType.choices, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
