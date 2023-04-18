@@ -8,11 +8,13 @@ from .models import PersonFilmwork
 
 class GenreFilmworkInline(admin.TabularInline):
     model = GenreFilmwork
+    autocomplete_fields = ('genre',)
     extra = 1
 
 
 class PersonFilmworkInline(admin.TabularInline):
     model = PersonFilmwork
+    autocomplete_fields = ('person',)
     extra = 1
 
 
