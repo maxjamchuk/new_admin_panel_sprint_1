@@ -20,9 +20,4 @@ class Migration(migrations.Migration):
             name='file_path',
             field=models.FileField(blank=True, null=True, upload_to='movies/', verbose_name='file'),
         ),
-        migrations.AddField(
-            model_name='person',
-            name='gender',
-            field=models.TextField(choices=[('male', 'male'), ('female', 'female')], null=True, verbose_name='gender'),
-        ),
     ]

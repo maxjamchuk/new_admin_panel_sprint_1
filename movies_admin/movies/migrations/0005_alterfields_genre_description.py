@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('movies', '0003_alter_filmwork_certificate'),
+        ('movies', '0004_alterfields_filmwork_certificate'),
     ]
 
     operations = [
@@ -14,10 +14,5 @@ class Migration(migrations.Migration):
             model_name='genre',
             name='description',
             field=models.TextField(blank=True, null=True, verbose_name='description'),
-        ),
-        migrations.AlterField(
-            model_name='personfilmwork',
-            name='role',
-            field=models.CharField(choices=[('actor', 'actor'), ('director', 'director'), ('writer', 'writer')], max_length=8, null=True, verbose_name='role'),
         ),
     ]
