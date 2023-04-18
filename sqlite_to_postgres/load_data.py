@@ -8,10 +8,7 @@ from psycopg2.extras import RealDictCursor
 
 from constants import TABLES
 from mapper import DataMapper
-from sql_tools import pg_con_context
-from sql_tools import PGSaver
-from sql_tools import sqlite_con_context
-from sql_tools import SQLiteExtractor
+from sql_tools import pg_con_context, PGSaver, sqlite_con_context, SQLiteExtractor
 
 
 load_dotenv()
